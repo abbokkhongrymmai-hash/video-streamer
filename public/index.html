@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Video Streamer</title>
+</head>
+<body style="font-family:sans-serif;text-align:center;margin-top:40px;">
+  <h1>🎬 Video Streamer</h1>
+  <input id="url" placeholder="https://www.terabox.com/s/..." style="width:400px;padding:8px;">
+  <button onclick="openPlayer()">Watch</button>
+  <script>
+    function openPlayer() {
+      const link = document.getElementById("url").value.trim();
+      if (!link) return alert("Enter a Terabox link!");
+      window.open("/watch?url=" + encodeURIComponent(link), "_blank");
+    }
+  </script>
+</body>
+</html>
