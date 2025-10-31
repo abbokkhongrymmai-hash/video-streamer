@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Now Playing</title>
+  <style>
+    body { background:#000; color:#fff; text-align:center; }
+    video { width:90%; margin-top:20px; }
+  </style>
+</head>
+<body>
+  <h2>Streaming from Terabox...</h2>
+  <video id="player" controls autoplay></video>
+  <script>
+    async function play() {
+      const p = new URLSearchParams(location.search);
+      const u = p.get("url");
+      if (!u) return alert("No URL");
+      const r = await fetch("/api/stream?url=" + encodeURIComponent(u));
+      const d = await r.json();
+      if (d.direct) document.getElementById("player").src = d.direct;
+      else alert("Failed to get stream link");
+    }
+    play();
+  </script>
+</body>
+</html>
